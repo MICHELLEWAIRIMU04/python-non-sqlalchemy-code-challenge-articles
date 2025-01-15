@@ -56,6 +56,7 @@ class Author:
     def add_article(self, magazine, title):
         if not isinstance(magazine, Magazine):
             raise ValueError("magazine must be an instance of Magazine")
+
         article = Article(self, magazine, title)
         self._articles.append(article)
         return article
@@ -70,8 +71,10 @@ class Magazine:
     def __init__(self, name, category):
         if not isinstance(name, str) or len(name) < 2 or len(name) > 16:
             raise ValueError("Name must be a string between 2 and 16 characters")
+
         if not isinstance(category, str) or len(category) == 0:
             raise ValueError("Category must be a non-empty string")
+            
         self._name = name
         self._category = category
         self._articles = []
