@@ -30,8 +30,8 @@ class TestMagazine:
       
 
         # uncomment the next two lines if using Exceptions
-        with pytest.raises(Exception):
-            Magazine(2, "Numbers")
+        # with pytest.raises(Exception):
+        #     Magazine(2, "Numbers")
 
     def test_name_len(self):
         """magazine name is between 2 and 16 characters, inclusive"""
@@ -45,12 +45,12 @@ class TestMagazine:
 
         
         # uncomment the next two lines if using Exceptions
-        with pytest.raises(Exception):
-        magazine_1.name = "New Yorker Plus X"
+        # with pytest.raises(Exception):
+        #     magazine_1.name = "New Yorker Plus X"
 
         # uncomment the next two lines if using Exceptions
-        with pytest.raises(Exception):
-        magazine_2.name = "A"
+        # with pytest.raises(Exception):
+        #     magazine_2.name = "A"
 
     def test_has_category(self):
         """Magazine is initialized with a category"""
@@ -89,15 +89,18 @@ class TestMagazine:
 
 
         # uncomment the next two lines if using Exceptions
-        with pytest.raises(Exception):
-        magazine_1.category = ""
+        # with pytest.raises(Exception):
+        #     magazine_1.category = ""
 
     def test_has_many_articles(self):
         """magazine has many articles"""
         author_1 = Author("Carry Bradshaw")
         magazine_1 = Magazine("Vogue", "Fashion")
         magazine_2 = Magazine("AD", "Architecture")
-       
+        article_1 = Article(author_1, magazine_1, "How to wear a tutu with style")
+        article_2 = Article(author_1, magazine_1, "Dating life in NYC")
+        article_3 = Article(author_1, magazine_2, "2023 Eccentric Design Trends")
+
         assert len(magazine_1.articles()) == 2
         assert len(magazine_2.articles()) == 1
         assert article_1 in magazine_1.articles()
