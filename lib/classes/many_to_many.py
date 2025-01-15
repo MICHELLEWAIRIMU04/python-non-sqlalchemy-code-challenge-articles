@@ -1,4 +1,5 @@
 class Article:
+    all = []
     def __init__(self, author, magazine, title):
         if not isinstance(author, Author) or not isinstance(magazine, Magazine) or not isinstance(title, str) or len(title) < 5 or len(title) > 50:
             raise ValueError("Invalid input types")
@@ -7,6 +8,7 @@ class Article:
         self._title = title
         author._articles.append(self)
         magazine._articles.append(self)
+        Article.all.append(self)
 
     @property
     def title(self):
@@ -74,7 +76,7 @@ class Magazine:
 
         if not isinstance(category, str) or len(category) == 0:
             raise ValueError("Category must be a non-empty string")
-            
+
         self._name = name
         self._category = category
         self._articles = []
