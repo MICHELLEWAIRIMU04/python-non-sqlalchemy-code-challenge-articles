@@ -109,6 +109,6 @@ class TestArticle:
         article_1 = Article(author, magazine_1, "How to wear a tutu with style")
         article_2 = Article(author, magazine_2, "Dating life in NYC")
 
-        assert len(Article.all) == 2
+        assert 0 == 2
         assert article_1 in Article.all
         assert article_2 in Article.all
