@@ -1,8 +1,8 @@
 class Article:
-    all = []
     def __init__(self, author, magazine, title):
         if not isinstance(author, Author) or not isinstance(magazine, Magazine) or not isinstance(title, str) or len(title) < 5 or len(title) > 50:
             raise ValueError("Invalid input types")
+
         self._author = author
         self._magazine = magazine
         self._title = title
@@ -22,6 +22,7 @@ class Article:
     def author(self, new_author):
         if not isinstance(new_author, Author):
             raise ValueError("Author must be an instance of Author")
+            
         self._author._articles.remove(self)
         self._author = new_author
         new_author._articles.append(self)
