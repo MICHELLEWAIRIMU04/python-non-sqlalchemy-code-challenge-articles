@@ -41,13 +41,10 @@ class Article:
 
 class Author:
     def __init__(self, name):
-        if  isinstance(name, str) and len(name) > 0:
-            self._name = name
-            self._articles = []
-
-        else:
+        if not isinstance(name, str) or len(name) == 0:
             raise ValueError("Name must be a non-empty string")
-        
+        self._name = name
+        self._articles = []
         
     @property
     def name(self):
@@ -60,7 +57,12 @@ class Author:
         return list(set(article.magazine for article in self._articles))
 
     def add_article(self, magazine, title):
-        return Article(self, magazine, title)
+        if not isinstance(magazine, Magazine):
+            raise ValueError("magazine must be an instance of Magazine")
+
+        article = Article(self, magazine, title)
+        self._articles.append(article)
+        return article
 
     def topic_areas(self):
         if not self._articles:
@@ -70,10 +72,10 @@ class Author:
 
 class Magazine:
     def __init__(self, name, category):
-        if  isinstance(name, str) and len(name) < 2 and len(name) > 16:
+        if not isinstance(name, str) or len(name) < 2 or len(name) > 16:
             raise ValueError("Name must be a string between 2 and 16 characters")
 
-        if  isinstance(category, str) and len(category) == 0:
+        if not isinstance(category, str) or len(category) == 0:
             raise ValueError("Category must be a non-empty string")
 
         self._name = name
@@ -86,12 +88,9 @@ class Magazine:
 
     @name.setter
     def name(self, new_name):
-        if  isinstance(new_name, str) and len(new_name) < 2 test_magazine_of_type_magazine_and_mutable len(new_name) > 16:
-             self._name = new_name
-        
-        else:
+        if not isinstance(new_name, str) or len(new_name) < 2 or len(new_name) > 16:
             raise ValueError("Name must be a string between 2 and 16 characters")
-        
+        self._name = new_name
 
     @property
     def category(self):
